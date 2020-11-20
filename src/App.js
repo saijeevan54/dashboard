@@ -4,6 +4,7 @@ import './Assets/default.css';
 import './Assets/logo.png';
 //Component
 import Header from './components/headerComponent/header';
+import Login from './components/login/login';
 //import HomePage from './components/pages/homePage';
 import Navbar from './components/Navbar';
 import Footer from './components/footerComponent/footer';
@@ -11,29 +12,81 @@ import Faq from './components/pages/faq';
 import CalendarF from './components/pages/calendar';
 import SettingsPane from './components/pages/setting';
 import App1 from './components/pages/App1';
+// import Jumbotron from 'react-bootstrap/Jumbotron';
+// import Toast from 'react-bootstrap/Toast';
+// import Container from 'react-bootstrap/Container';
+// import Button from 'react-bootstrap/Button';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from "react";
+import "./App.scss";
+//import { Login, Register } from "./components/pages";
 
-import React from 'react';
+//import React from 'react';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isUserActive: false
+    };
+  }
 
-function App() {
+  // componentDidMount() {
+  //   //Add .right by default
+  //   this.rightSide.classList.add("right");
+  // }
+
+  // changeState() {
+  //   const { isLogginActive } = this.state;
+
+  //   if (isLogginActive) {
+  //     this.rightSide.classList.remove("right");
+  //     this.rightSide.classList.add("left");
+  //   } else {
+  //     this.rightSide.classList.remove("left");
+  //     this.rightSide.classList.add("right");
+  //   }
+  //   this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+  // }
+
+  render() {
+    const isUserActive = true;
+    const current = isUserActive ? "Register" : "Login";
+    const currentActive = isUserActive ? "login" : "register";
+    return (
+      <div className="App">
+        <Router>
+          <Header></Header>
+          {isUserActive ? (<Login />) : (
+            <div>
+              <Navbar />
+              <Switch>
+                <Route path='/homePage' exact component={App1} />
+                <Route path='/faq' exact component={Faq} />
+                <Route path='/calendar' exact component={CalendarF} />
+                <Route path='/setting' exact component={SettingsPane} />
+                <Route path='/App1' exact component={App1} />
+              </Switch>
+            </div>
+          )}
+
+          <Footer></Footer>
+        </Router>
+      </div>
+    );
+  }
+}
+const RightSide = props => {
   return (
-    <div className="App">
-      <Router>
-        <Header></Header>
-        <Navbar />
-        <Switch>
-          <Route path='/homePage' exact component={App1} />
-          <Route path='/faq' exact component={Faq} />
-          <Route path='/calendar' exact component={CalendarF} />
-          <Route path='/setting' exact component={SettingsPane} />
-          <Route path='/App1' exact component={App1} />
-          
-        </Switch>
-        <Footer></Footer>
-      </Router>
+    <div
+      className="right-side"
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className="inner-container">
+        <div className="text">{props.current}</div>
+      </div>
     </div>
   );
-}
-
+};
 export default App;
