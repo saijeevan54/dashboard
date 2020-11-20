@@ -84,8 +84,7 @@ class Login extends React.Component {
     console.log(JSON.stringify(this.state));
     this.state.roles = "";
     this.state.user.email = "";
-    //http://localhost:8000/accounts/api/users/
-    fetch('https://testapi.io/api/vamshi399/login', {
+    fetch('http://localhost:8000/accounts/api/users/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain',
@@ -109,8 +108,7 @@ class Login extends React.Component {
     if(this.state.roles==""){
       this.state.roles = "manager";
     }
-    //http://localhost:8000/accounts/api/users/
-    fetch('https://testapi.io/api/vamshi399/login', {
+    fetch('http://localhost:8000/accounts/api/users/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain',
