@@ -50,14 +50,14 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = true;
+    const isUserActive = false;
     const current = isUserActive ? "Register" : "Login";
     const currentActive = isUserActive ? "login" : "register";
     return (
       <div className="App">
         <Router>
           <Header></Header>
-          {isUserActive ? (<Login />) : (
+          {!isUserActive ? (<Login />) : (
             <div>
               <Navbar />
               <Switch>
