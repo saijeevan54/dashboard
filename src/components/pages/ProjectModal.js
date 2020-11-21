@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Modal.css';
 
-const modal = (props) => {
+const projectmodal = (props) => {
     return (
         <div>
             <div className="modal-wrapper"
@@ -11,7 +11,7 @@ const modal = (props) => {
                     opacity: props.show ? '1' : '0'
                 }}>
                 <div className="modal-header">
-                    <h3>Add New Task</h3>
+                    <h3>Add New Project</h3>
                     <span className="close-modal-btn" onClick={props.close}>×</span>
                 </div>
                 <div className="modal-body">
@@ -27,4 +27,4 @@ const modal = (props) => {
     )
 }
 
-export default modal;
+export default projectmodal;

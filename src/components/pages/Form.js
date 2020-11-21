@@ -61,7 +61,7 @@ class Form extends React.Component {
   }
   handleTaskSubmit = (event) => {
     // alert('A form was submitted: ' + this.state.username);
-    console.log("inside handle task");
+ 
     console.log(JSON.stringify(this.props));
 
     fetch('http://localhost:8000/accounts/tasks', {
@@ -92,6 +92,7 @@ class Form extends React.Component {
           <input id="Pname" value={this.props.newPname} 
             type="text" name="Pname"
             onChange={this.props.handleInputChange} />
+            
           </label><br/><br/>
           <label htmlFor="taskname">
           Task Name:<br/>
@@ -107,11 +108,9 @@ class Form extends React.Component {
           </label><br/><br/>
           <label htmlFor="Status">
           Status :<br/>
-          <select className='select' name='Status' onChange={this.props.handleInputChange} value={this.props.value} defaultValue="Select">
-                <option value="Select"></option>
+          <select className='select' name='Status' onChange={this.props.handleInputChange} value={this.props.value} defaultValue="Work Assigned">
+  
                 <option value="Work Assigned">Work Assigned</option>
-                <option value="Work in Progress">Work in Progress</option>
-                <option value="Work Pending"> Work Pending</option>
                 <option value="Completed">Completed</option>
 
                 

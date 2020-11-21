@@ -4,19 +4,24 @@ import Form from './Form';
 import Modal from './Modal';
 
 import { FaPlusCircle } from "react-icons/fa";
-
 class App1 extends Component {
   constructor() {
     super();
-
+ 
     this.state = {
-      PName:'',
+        Pname:'',
       taskname: '',
       MName: '',
       Status: '',
       items: []
     }
+    this.props = {
+        Pname:'', item: []
+    }
 }
+
+
+
     openModalHandler = () => {
         this.setState({
             isShowing: true
@@ -36,7 +41,7 @@ class App1 extends Component {
     let items = [...this.state.items];
 
     items.push({
-        PName: this.state.PName,
+        Pname: this.state.Pname,
       taskname: this.state.taskname,
       MName: this.state.MName,
       Status: this.state.Status
@@ -44,7 +49,7 @@ class App1 extends Component {
 
     this.setState({
       items,
-      PName:"",
+      Pname:"",
       taskname:"",
       MName:"",
       Status: ""
@@ -60,16 +65,25 @@ class App1 extends Component {
       [name]: value
     })
   };
+  
 
  
   render() {
     return (
       <div className="App1">
           <b>Add New Project: </b>
-          <button className='button'  onClick={this.openModalHandler}> <FaPlusCircle size="2em" color="black" /></button>
-          
+          <button className='button'  onClick={this.onClick}> <FaPlusCircle size="2em" color="black" /></button>
+          <div>
+        <input type="text" onChange={ this.handleChange } />
+        <input
+          type="button"
+          value="Alert the text input"
+          onClick={this.handleClick}
+        />
+      </div>
           <br/>
             <br/>
+          
         <div className="Project">
          <div className="Project1"> 
         <Table items={ this.state.items }/>
@@ -82,14 +96,14 @@ class App1 extends Component {
          <Form 
           handleFormSubmit={ this.handleFormSubmit } 
           handleInputChange={ this.handleInputChange }
-          Project={this.state.PName}
+          Project={this.state.Pname}
           text={ this.state.taskname }
           assignee={ this.state.MName }
           //newStatus={ this.state.Status } 
            />
         </Modal>
         </div>
-        <div>Project 2</div>
+        <div></div>
         </div>
       </div>
     );
