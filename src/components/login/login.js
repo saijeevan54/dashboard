@@ -81,17 +81,17 @@ class Login extends React.Component {
 
   handleSubmitLogin = (event) => {
     // alert('A form was submitted: ' + this.state.username);
-    console.log(JSON.stringify(this.state));
+    console.log(JSON.stringify(this.state.user));
     this.state.roles = "";
     this.state.user.email = "";
-    fetch('http://localhost:8000/accounts/api/users/', {
+    fetch('http://localhost:8000/token-auth/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8'
       },
       // We convert the React state to JSON and send it as the POST body
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(this.state.user)
     }).then(function (response) {
       console.log(response)
       if (response.status == "200") {
