@@ -82,7 +82,9 @@ class Login extends React.Component {
   handleSubmitLogin = (event) => {
     // alert('A form was submitted: ' + this.state.username);
     console.log(JSON.stringify(this.state));
+    // eslint-disable-next-line react/no-direct-mutation-state
     this.state.roles = "";
+    // eslint-disable-next-line react/no-direct-mutation-state
     this.state.user.email = "";
     fetch('http://localhost:8000/accounts/api/users/', {
       method: 'POST',
@@ -94,7 +96,7 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     }).then(function (response) {
       console.log(response)
-      if (response.status == "200") {
+      if (response.status === "200") {
         // <Redirect to="/dashboard.jsx"/>;
       }
       return response.json();
@@ -105,7 +107,8 @@ class Login extends React.Component {
   handleSubmitRegister = (event) => {
     // alert('A form was submitted: ' + this.state.username);
     console.log(JSON.stringify(this.state));
-    if(this.state.roles==""){
+    if(this.state.roles===""){
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.roles = "manager";
     }
     fetch('http://localhost:8000/accounts/api/users/', {
@@ -118,7 +121,7 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     }).then(function (response) {
       console.log(response)
-      if (response.status == "200") {
+      if (response.status === "200") {
         // <Redirect to="/dashboard.jsx"/>;
       }
       return response.json();

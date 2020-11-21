@@ -50,9 +50,9 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = false;
+    const isUserActive = true;
+    // eslint-disable-next-line no-unused-vars
     const current = isUserActive ? "Register" : "Login";
-    const currentActive = isUserActive ? "login" : "register";
     return (
       <div className="App">
         <Router>
@@ -76,6 +76,7 @@ class App extends React.Component {
     );
   }
 }
+// eslint-disable-next-line no-unused-vars
 const RightSide = props => {
   return (
     <div

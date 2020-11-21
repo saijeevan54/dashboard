@@ -10,6 +10,7 @@ class App1 extends Component {
     super();
 
     this.state = {
+      PName:'',
       taskname: '',
       MName: '',
       Status: '',
@@ -35,6 +36,7 @@ class App1 extends Component {
     let items = [...this.state.items];
 
     items.push({
+        PName: this.state.PName,
       taskname: this.state.taskname,
       MName: this.state.MName,
       Status: this.state.Status
@@ -42,9 +44,10 @@ class App1 extends Component {
 
     this.setState({
       items,
-      taskname: '',
-      MName: '',
-      Status: ''
+      PName:"",
+      taskname:"",
+      MName:"",
+      Status: ""
     });
   };
 
@@ -52,13 +55,13 @@ class App1 extends Component {
     let input = e.target;
     let name = e.target.name;
     let value = input.value;
-
+    
     this.setState({
       [name]: value
     })
   };
 
-
+ 
   render() {
     return (
       <div className="App1">
@@ -68,7 +71,7 @@ class App1 extends Component {
           <br/>
             <br/>
         <div className="Project">
-         <div className="Project1"> Project1
+         <div className="Project1"> 
         <Table items={ this.state.items }/>
         <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
 
@@ -79,9 +82,11 @@ class App1 extends Component {
          <Form 
           handleFormSubmit={ this.handleFormSubmit } 
           handleInputChange={ this.handleInputChange }
-          newTaskname={ this.state.taskname }
-          newMName={ this.state.MName }
-          newStatus={ this.state.Status }  />
+          Project={this.state.PName}
+          text={ this.state.taskname }
+          assignee={ this.state.MName }
+          //newStatus={ this.state.Status } 
+           />
         </Modal>
         </div>
         <div>Project 2</div>

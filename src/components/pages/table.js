@@ -3,8 +3,16 @@ import React from 'react';
 class Table extends React.Component {
   render() {
     const items = this.props.items;
+    console.log(this.props.items);
     return (
       <div id="Table">
+        {items.map(item => {
+              return (
+              
+                  <h3>{item.PName}</h3>
+                  
+              );
+            })}
         <table>
           <tbody>
             <tr>
