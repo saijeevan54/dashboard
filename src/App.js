@@ -46,7 +46,7 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = Cookies.get('access_token')!=null && Cookies.get('access_token')!="";
+    const isUserActive = Cookies.get('access_token')!=null && Cookies.get('access_token')!=="";
     return (
       <div className="App">
         <Router>
@@ -70,6 +70,7 @@ class App extends React.Component {
     );
   }
 }
+// eslint-disable-next-line no-unused-vars
 const RightSide = props => {
   return (
     <div
