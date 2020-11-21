@@ -12,15 +12,11 @@ import Faq from './components/pages/faq';
 import CalendarF from './components/pages/calendar';
 import SettingsPane from './components/pages/setting';
 import App1 from './components/pages/App1';
-// import Jumbotron from 'react-bootstrap/Jumbotron';
-// import Toast from 'react-bootstrap/Toast';
-// import Container from 'react-bootstrap/Container';
-// import Button from 'react-bootstrap/Button';
+import Cookies from 'js-cookie';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from "react";
 import "./App.scss";
-//import { Login, Register } from "./components/pages";
 
 //import React from 'react';
 class App extends React.Component {
@@ -50,9 +46,7 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = true;
-    // eslint-disable-next-line no-unused-vars
-    const current = isUserActive ? "Register" : "Login";
+    const isUserActive = Cookies.get('access_token')!=null && Cookies.get('access_token')!="";
     return (
       <div className="App">
         <Router>
@@ -76,7 +70,6 @@ class App extends React.Component {
     );
   }
 }
-// eslint-disable-next-line no-unused-vars
 const RightSide = props => {
   return (
     <div
