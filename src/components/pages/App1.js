@@ -65,7 +65,7 @@ class App1 extends Component {
   render() {
     return (
       <div className="App1">
-          <b>Add New Project: </b>
+          <h3><b>Add New Project: </b></h3>
           <button className='button'  onClick={this.openModalHandler}> <FaPlusCircle size="2em" color="black" /></button>
           
           <br/>
@@ -89,7 +89,7 @@ class App1 extends Component {
            />
         </Modal>
         </div>
-        <div>Project 2</div>
+       
         </div>
       </div>
     );

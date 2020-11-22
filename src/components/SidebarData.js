@@ -56,6 +56,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Reminders',
+    path: '/reminders',
+    icon: <FaIcons.FaBell/>,
+    cName: 'nav-text'
+  },
+  {
     title: 'FAQ',
     path: '/faq',
     icon: <IoMdHelp/>,

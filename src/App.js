@@ -54,6 +54,7 @@ class App extends React.Component {
     // eslint-disable-next-line no-unused-vars
     const current = isUserActive ? "Register" : "Login";
     return (
+      
       <div className="App">
         <Router>
           <Header></Header>
@@ -67,10 +68,11 @@ class App extends React.Component {
                 <Route path='/setting' exact component={SettingsPane} />
                 <Route path='/App1' exact component={App1} />
               </Switch>
+            {/* <App1></App1> */}
             </div>
           )}
 
-          <Footer></Footer>
+          <Footer> </Footer>
         </Router>
       </div>
     );
@@ -79,11 +81,13 @@ class App extends React.Component {
 // eslint-disable-next-line no-unused-vars
 const RightSide = props => {
   return (
+    
     <div
       className="right-side"
       ref={props.containerRef}
       onClick={props.onClick}
     >
+      
       <div className="inner-container">
         <div className="text">{props.current}</div>
       </div>

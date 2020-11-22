@@ -14,13 +14,20 @@ function HomePage() {
 
   const handleClose = () => setModalIsOpen(false);
   const handleClose1 = () => setModalIsOpen1(false);
+  
+  
 
   return (
-    <div className='home'>
-      <div className="Project">
-        <div className="AddProject">
+ 
+    
+    <div className="home">
       
-          <b>Add New Project: </b>
+      <div className="Project">
+     
+        <div className="AddProject">
+          
+        
+            <b >Add New Project: </b>
           <button className='button' onClick={() => setModalIsOpen1(true)}> <FaPlusCircle size="2em" color="black" /></button>
           <br/>
             <br/>
@@ -51,6 +58,7 @@ function HomePage() {
             </div>
           </Modal>
         </div>
+        
    
         <div className='tasks'>
 

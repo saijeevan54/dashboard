@@ -4,12 +4,16 @@
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     margin: 100px auto 0;
     transition: all .5s;
-    width: 100%;
+    width: 150%;
+    background-image: url("https://img.wallpapersafari.com/desktop/1600/900/83/5/kmV7Md.jpg"); 
+  background-size: cover;
+  background-repeat:no-repeat;
+
 }
 
 .modal-header {
-    background: #263238;
-    height: 50px;
+    background: #03045e;
+    height: 55px;
     line-height: 40px;
     padding: 3px 20px;
     text-align: right;

@@ -1,13 +1,14 @@
-.navbar {
-    background: #02AAB0;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #1b1b1a, #3a3a37);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #1b1b1a, #3a3a37); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* .navbar {
+    background: #02AAB0;  
+background: -webkit-linear-gradient(to right, #1b1b1a, #3a3a37);  
+background: linear-gradient(to right, #1b1b1a, #3a3a37); 
    
     height: 80px;
     display: flex;
     justify-content: start;
     align-items: center;
-  }
+  } */
+  @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
   .name{
       color: white;
       align-items: center;
@@ -23,10 +24,8 @@ background: linear-gradient(to right, #1b1b1a, #3a3a37); /* W3C, IE 10+/ Edge, F
   }
   
   .nav-menu {
-    background: #000000;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1b1b1a, #3a3a37);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1b1b1a, #3a3a37); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background: #03045e;
+     
     width: 250px;
     height: 100vh;
     display: flex;
@@ -49,27 +48,30 @@ background: linear-gradient(to right, #1b1b1a, #3a3a37); /* W3C, IE 10+/ Edge, F
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
-    height: 60px;
+    height: 65px;
+    font-family: 'Kalam', cursive;
   }
   
   .nav-text a {
     text-decoration: none;
     color: #f5f5f5;
-    font-size: 18px;
+    font-size: 23px;
     width: 95%;
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 5px;
     border-radius: 4px;
   }
   
   .nav-text a:hover {
     background-color: #0f0f0f;
+    width:80%;
   }
   
   .nav-menu-items {
     width: 100%;
+padding-top:60%;
   }
   
   .navbar-toggle {
