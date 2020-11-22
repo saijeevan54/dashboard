@@ -18,14 +18,14 @@ class App1 extends Component {
       taskname: '',
       MName: '',
       Status: '',
-      items: [],
+      items: null,
     }
     this.props = {
         Pname:'', item: []
     }
-    
+this.onSubmit = this.onSubmit.bind(this);
 }
-async componentDidMount() {
+async componentWillMount() {
   // POST request using fetch with async/await
   const requestOptions = {
       method: 'POST',
@@ -35,6 +35,19 @@ async componentDidMount() {
   const response = await fetch('https://testapi.io/api/vamshi399/task', requestOptions);
   const data = await response.json();
   this.setState({ items: data });
+}
+
+
+onSubmit = (e) => {
+  const Prname = prompt('Please enter Project name')
+  this.setState({ enteredName : Prname });
+  alert('New Project Added!!');
+  console.log(Prname);
+  let item = [...this.state.item];
+  item.push({
+    Pname: this.state.Prname});
+
+  
 }
 
     openModalHandler = () => {
@@ -84,42 +97,47 @@ async componentDidMount() {
 
  
   render() {
+    var isFetching;
+    if(this.state.items==null){
+      isFetching = true;
+    }
+    else{
+      isFetching = false;
+    }
+    // const { isFetching } = this.state;
     return (
       <div className="App1">
-          <b>Add New Project: </b>
-          <button className='button'  onClick={this.onClick}> <FaPlusCircle size="2em" color="black" /></button>
-          <div>
-        <input type="text" onChange={ this.handleChange } />
-        <input
-          type="button"
-          value="Alert the text input"
-          onClick={this.handleClick}
-        />
-      </div>
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (          
+        <div className="Project">
+        <form><b>Add New Project:</b><br/>
+          <button className='button'  onClick={this.onSubmit}> <FaPlusCircle size="2em" color="black" /></button>
+          </form>
+          
           <br/>
             <br/>
-          
-        <div className="Project">
          <div className="Project1"> 
-        <Table items={ this.state.items }/>
-        <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
+         
+          <Table items={ this.state.items }/>
+          
+          <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
 
-        <Modal
+          <Modal
             className="modal"
             show={this.state.isShowing}
             close={this.closeModalHandler}>
-         <Form 
-          handleFormSubmit={ this.handleFormSubmit } 
-          handleInputChange={ this.handleInputChange }
-          Project={this.state.Pname}
-          text={ this.state.taskname }
-          assignee={ this.state.MName }
-          //newStatus={ this.state.Status } 
+            <Form 
+             handleFormSubmit={ this.handleFormSubmit } 
+             handleInputChange={ this.handleInputChange }
+              Project={this.state.Pname}
+              text={ this.state.taskname }
+              assignee={ this.state.MName }
+              //newStatus={ this.state.Status } 
            />
-        </Modal>
-        </div>
-        <div></div>
-        </div>
+          </Modal>
+         </div>
+        </div>)}
       </div>
     );
   }

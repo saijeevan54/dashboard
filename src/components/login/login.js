@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 /* eslint-disable no-unused-vars */
 import React, { component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
