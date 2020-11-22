@@ -39,13 +39,13 @@ async componentWillMount() {
 
 
 onSubmit = (e) => {
-  const Prname = prompt('Please enter Project name')
-  this.setState({ enteredName : Prname });
+  const Pname = prompt('Please enter Project name')
+  this.setState({ enteredName : Pname });
   alert('New Project Added!!');
-  console.log(Prname);
+  console.log(Pname);
   let item = [...this.state.item];
   item.push({
-    Pname: this.state.Prname});
+    Pname: this.state.Pname});
 
   
 }
@@ -111,12 +111,14 @@ onSubmit = (e) => {
           <div>Loading...</div>
         ) : (          
         <div className="Project">
-        <form><b>Add New Project:</b><br/>
-          <button className='button'  onClick={this.onSubmit}> <FaPlusCircle size="2em" color="black" /></button>
+        <form className="add"><b>Add New Project:</b><br/>
+          <button className="button"  onClick={this.onSubmit}> <FaPlusCircle size="3em" color="green" /></button>
           </form>
           
           <br/>
             <br/>
+            <br/>
+
          <div className="Project1"> 
          
           <Table items={ this.state.items }/>

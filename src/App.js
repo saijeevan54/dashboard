@@ -55,8 +55,9 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = Cookies.get('access_token')!=null && Cookies.get('access_token')!=="";
+    const isUserActive = true;//Cookies.get('access_token')!=null && Cookies.get('access_token')!=="";
     return (
+      
       <div className="App">
         <Router>
           <Header></Header>
@@ -71,10 +72,11 @@ class App extends React.Component {
                 <Route path='/App1' exact component={App1} />
                 <Route path='/logout' exact component={Logout} />
               </Switch>
+            {/* <App1></App1> */}
             </div>
           )}
 
-          <Footer></Footer>
+          <Footer> </Footer>
         </Router>
       </div>
     );
@@ -83,11 +85,13 @@ class App extends React.Component {
 // eslint-disable-next-line no-unused-vars
 const RightSide = props => {
   return (
+    
     <div
       className="right-side"
       ref={props.containerRef}
       onClick={props.onClick}
     >
+      
       <div className="inner-container">
         <div className="text">{props.current}</div>
       </div>
