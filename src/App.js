@@ -10,17 +10,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/footerComponent/footer';
 import Faq from './components/pages/faq';
 import CalendarF from './components/pages/calendar';
+import Logout from './components/logout/logout';
 import SettingsPane from './components/pages/setting';
 import App1 from './components/pages/App1';
-// import Jumbotron from 'react-bootstrap/Jumbotron';
-// import Toast from 'react-bootstrap/Toast';
-// import Container from 'react-bootstrap/Container';
-// import Button from 'react-bootstrap/Button';
+import Cookies from 'js-cookie';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from "react";
 import "./App.scss";
-//import { Login, Register } from "./components/pages";
 
 //import React from 'react';
 class App extends React.Component {
@@ -50,9 +47,7 @@ class App extends React.Component {
   // }
 
   render() {
-    const isUserActive = true;
-    // eslint-disable-next-line no-unused-vars
-    const current = isUserActive ? "Register" : "Login";
+    const isUserActive = true;//Cookies.get('access_token')!=null && Cookies.get('access_token')!=="";
     return (
       
       <div className="App">
@@ -61,12 +56,15 @@ class App extends React.Component {
           {!isUserActive ? (<Login />) : (
             <div>
               <Navbar />
+             
               <Switch>
+                <Route path='/' exact component={App1} />
                 <Route path='/homePage' exact component={App1} />
                 <Route path='/faq' exact component={Faq} />
                 <Route path='/calendar' exact component={CalendarF} />
                 <Route path='/setting' exact component={SettingsPane} />
                 <Route path='/App1' exact component={App1} />
+                <Route path='/logout' exact component={Logout} />
               </Switch>
             {/* <App1></App1> */}
             </div>

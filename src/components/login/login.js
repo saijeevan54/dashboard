@@ -1,15 +1,15 @@
+/* eslint-disable react/no-direct-mutation-state */
 /* eslint-disable no-unused-vars */
 import React, { component } from 'react';
-// import logo from './logo.png';
-// import {FaUserCircle} from "react-icons/fa";
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-//import Sonnet from 'react-bootstrap/Sonnet';
-// console.log(logo);
 import "./style.scss";
-import $ from 'jquery'; 
-
+import Cookies from 'js-cookie';
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom'
+import $ from 'jquery';
 class Login extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -18,20 +18,18 @@ class Login extends React.Component {
         password: "",
         email: "",
       },
-      roles: "manager"
+      roles: "manager",
+      isUserActive: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
   }
-  // handleTab = (event) => {
-  //   this.setState((state) => ({
-  //     user: {
-  //       username: "",
-  //       email: "",
-  //       password: ""
-  //     },
-  //     roles: "manager"
-  //   }))
-  // }
+  componentDidMount() {
+    console.log("inside componentDidMount");
+    if(Cookies.get('access_token') !=null && Cookies.get('access_token')!=""){
+      this.state.isUserActive=true;
+    }
+  }
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -80,34 +78,37 @@ class Login extends React.Component {
   }
 
   handleSubmitLogin = (event) => {
-    // alert('A form was submitted: ' + this.state.username);
     console.log(JSON.stringify(this.state.user));
     this.state.user.roles = "";
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.user.email = "";
+    //https://testapi.io/api/vamshi399/login
+    //http://localhost:8000/token-auth/
     fetch('http://localhost:8000/token-auth/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8'
       },
-      // We convert the React state to JSON and send it as the POST body
       body: JSON.stringify(this.state.user)
-    }).then(function (response) {
-      console.log(response)
-      if (response.status === "200") {
-        // <Redirect to="/dashboard.jsx"/>;
+    }).then(response => response.json()).then(function (response) {
+      console.log(response.token)
+      if (typeof response.token != 'undefined' && !response.token == "") {
+        window.isUserLoggedIn = true;
+        Cookies.set('access_token', response.token);
+        Cookies.set('username', response.user.username);
+        //Cookies.set('refresh_token', tokens.refresh_token)
+        console.log("User loggedin successfully");
+        window.location.reload();
       }
-      return response.json();
+      return response;
     });
 
     event.preventDefault();
   }
   handleSubmitRegister = (event) => {
-    // alert('A form was submitted: ' + this.state.username);
     console.log(JSON.stringify(this.state));
-    if(this.state.roles===""){
-      // eslint-disable-next-line react/no-direct-mutation-state
+    if (this.state.roles === "") {
       this.state.roles = "manager";
     }
     fetch('http://localhost:8000/accounts/api/users/', {
@@ -129,16 +130,6 @@ class Login extends React.Component {
     event.preventDefault();
   }
   render() {
-    // $( ".login .nav .nav-item" ).click(function() {
-    //   this.state = {
-    //     user: {
-    //       username: "",
-    //       password: "",
-    //       email: "",
-    //     },
-    //     roles: "manager"
-    //   }
-    // });
     return (
       <login className="login">
         <Tabs defaultActiveKey="login" id="uncontrolled-tab-example" >
@@ -155,7 +146,7 @@ class Login extends React.Component {
               </div>
               <div className="form-group footer">
                 <button type="button" className="btn" onClick={this.handleSubmitLogin}>
-                  Register
+                  Login
           </button>
               </div>
             </div>

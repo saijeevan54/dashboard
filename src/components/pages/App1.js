@@ -4,19 +4,36 @@ import Form from './Form';
 import Modal from './Modal';
 
 import { FaPlusCircle } from "react-icons/fa";
-
 class App1 extends Component {
   constructor() {
     super();
-
+ 
     this.state = {
-      PName:'',
+        Pname:'',
       taskname: '',
       MName: '',
       Status: '',
       items: []
     }
+    this.props = {
+        Pname:'', item: []
+    }
+    this.onSubmit = this.onSubmit.bind(this);
 }
+
+
+onSubmit = (e) => {
+  const Pname = prompt('Please enter Project name')
+  this.setState({ enteredName : Pname });
+  alert('New Project Added!!');
+  console.log(Pname);
+  let item = [...this.state.item];
+  item.push({
+    Pname: this.state.Pname});
+
+  
+}
+
     openModalHandler = () => {
         this.setState({
             isShowing: true
@@ -36,7 +53,7 @@ class App1 extends Component {
     let items = [...this.state.items];
 
     items.push({
-        PName: this.state.PName,
+        Pname: this.state.Pname,
       taskname: this.state.taskname,
       MName: this.state.MName,
       Status: this.state.Status
@@ -44,7 +61,7 @@ class App1 extends Component {
 
     this.setState({
       items,
-      PName:"",
+      Pname:"",
       taskname:"",
       MName:"",
       Status: ""
@@ -60,36 +77,43 @@ class App1 extends Component {
       [name]: value
     })
   };
+  
 
  
   render() {
     return (
       <div className="App1">
-          <h3><b>Add New Project: </b></h3>
-          <button className='button'  onClick={this.openModalHandler}> <FaPlusCircle size="2em" color="black" /></button>
+       
+          
+        <div className="Project">
+        <form className="add"><b>Add New Project:</b><br/>
+          <button className="button"  onClick={this.onSubmit}> <FaPlusCircle size="3em" color="green" /></button>
+          </form>
           
           <br/>
             <br/>
-        <div className="Project">
-         <div className="Project1"> 
-        <Table items={ this.state.items }/>
-        <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
+            <br/>
 
-        <Modal
+         <div className="Project1"> 
+         
+          <Table items={ this.state.items }/>
+          
+          <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
+
+          <Modal
             className="modal"
             show={this.state.isShowing}
             close={this.closeModalHandler}>
-         <Form 
-          handleFormSubmit={ this.handleFormSubmit } 
-          handleInputChange={ this.handleInputChange }
-          Project={this.state.PName}
-          text={ this.state.taskname }
-          assignee={ this.state.MName }
-          //newStatus={ this.state.Status } 
+            <Form 
+             handleFormSubmit={ this.handleFormSubmit } 
+             handleInputChange={ this.handleInputChange }
+              Project={this.state.Pname}
+              text={ this.state.taskname }
+              assignee={ this.state.MName }
+              //newStatus={ this.state.Status } 
            />
-        </Modal>
-        </div>
-       
+          </Modal>
+         </div>
         </div>
       </div>
     );
