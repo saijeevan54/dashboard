@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 /* eslint-disable no-unused-vars */
 import React, { component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
@@ -82,7 +83,7 @@ class Login extends React.Component {
     this.state.user.roles = "";
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.user.email = "";
-    fetch('http://localhost:8000/token-auth/', {
+    fetch('https://testapi.io/api/vamshi399/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain',

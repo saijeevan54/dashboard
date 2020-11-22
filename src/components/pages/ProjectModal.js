@@ -1,30 +1,21 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
+// eslint-disable-next-line no-unused-vars
+import { FaPlusCircle } from "react-icons/fa";
+import Form1 from './Form1';
+import Modal from './Modal'
 import './Modal.css';
 
-const projectmodal = (props) => {
-    return (
-        <div>
-            <div className="modal-wrapper"
-                style={{
-                    transform: props.show ? 'translateY(-15vh)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
-                }}>
-                <div className="modal-header">
-                    <h3>Add New Project</h3>
-                    <span className="close-modal-btn" onClick={props.close}>×</span>
-                </div>
-                <div className="modal-body">
-                    <p>
-                        {props.children}
-                    </p>
-                    <br/><br/>
-                </div>
-                <div className="modal-footer">
-                </div>
-            </div>
+class projectmodal extends React.Component {
+  
+    render() {
+      return (
+        <div id="Form">
+            Hi
         </div>
-    )
-}
-
+      );
+    }
+  }
+  
 export default projectmodal;

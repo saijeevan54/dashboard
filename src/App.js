@@ -55,11 +55,11 @@ class App extends React.Component {
             <div>
               <Navbar />
               <Switch>
-                <Route path='/homePage' exact component={App1} />
+                <Route path='/' exact component={App1} />
                 <Route path='/faq' exact component={Faq} />
                 <Route path='/calendar' exact component={CalendarF} />
                 <Route path='/setting' exact component={SettingsPane} />
-                <Route path='/App1' exact component={App1} />
+                <Route path='/homePage' exact component={App1} />
               </Switch>
             </div>
           )}

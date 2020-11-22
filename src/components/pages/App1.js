@@ -18,9 +18,21 @@ class App1 extends Component {
     this.props = {
         Pname:'', item: []
     }
+    this.onSubmit = this.onSubmit.bind(this);
 }
 
 
+onSubmit = (e) => {
+  const Prname = prompt('Please enter Project name')
+  this.setState({ enteredName : Prname });
+  alert('New Project Added!!');
+  console.log(Prname);
+  let item = [...this.state.item];
+  item.push({
+    Pname: this.state.Prname});
+
+  
+}
 
     openModalHandler = () => {
         this.setState({
@@ -71,39 +83,35 @@ class App1 extends Component {
   render() {
     return (
       <div className="App1">
-          <b>Add New Project: </b>
-          <button className='button'  onClick={this.onClick}> <FaPlusCircle size="2em" color="black" /></button>
-          <div>
-        <input type="text" onChange={ this.handleChange } />
-        <input
-          type="button"
-          value="Alert the text input"
-          onClick={this.handleClick}
-        />
-      </div>
-          <br/>
-            <br/>
+       
           
         <div className="Project">
+        <form><b>Add New Project:</b><br/>
+          <button className='button'  onClick={this.onSubmit}> <FaPlusCircle size="2em" color="black" /></button>
+          </form>
+          
+          <br/>
+            <br/>
          <div className="Project1"> 
-        <Table items={ this.state.items }/>
-        <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
+         
+          <Table items={ this.state.items }/>
+          
+          <button className="open-modal-btn" onClick={this.openModalHandler}>Add task</button>
 
-        <Modal
+          <Modal
             className="modal"
             show={this.state.isShowing}
             close={this.closeModalHandler}>
-         <Form 
-          handleFormSubmit={ this.handleFormSubmit } 
-          handleInputChange={ this.handleInputChange }
-          Project={this.state.Pname}
-          text={ this.state.taskname }
-          assignee={ this.state.MName }
-          //newStatus={ this.state.Status } 
+            <Form 
+             handleFormSubmit={ this.handleFormSubmit } 
+             handleInputChange={ this.handleInputChange }
+              Project={this.state.Pname}
+              text={ this.state.taskname }
+              assignee={ this.state.MName }
+              //newStatus={ this.state.Status } 
            />
-        </Modal>
-        </div>
-        <div></div>
+          </Modal>
+         </div>
         </div>
       </div>
     );
