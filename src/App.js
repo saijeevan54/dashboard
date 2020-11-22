@@ -24,9 +24,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: {
+        username: "",
+        password: "",
+        email: "",
+      },
+      roles: "manager",
       isUserActive: false
-    };
+    }
   }
+
+  
 
   // componentDidMount() {
   //   //Add .right by default
@@ -58,8 +66,6 @@ class App extends React.Component {
               <Navbar />
              
               <Switch>
-                <Route path='/' exact component={App1} />
-                <Route path='/homePage' exact component={App1} />
                 <Route path='/faq' exact component={Faq} />
                 <Route path='/calendar' exact component={CalendarF} />
                 <Route path='/setting' exact component={SettingsPane} />
