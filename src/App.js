@@ -55,7 +55,6 @@ class App extends React.Component {
           {!isUserActive ? (<Login />) : (
             <div>
               <Navbar />
-              <App1 />
               <Switch>
                 <Route path='/' exact component={App1} />
                 <Route path='/homePage' exact component={App1} />
