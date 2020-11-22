@@ -2,23 +2,39 @@ import React, { Component } from 'react';
 import Table from './table';
 import Form from './Form';
 import Modal from './Modal';
+import Cookies from 'js-cookie';
 
 import { FaPlusCircle } from "react-icons/fa";
 class App1 extends Component {
-  constructor() {
-    super();
- 
+  constructor(props) {
+    super(props);
     this.state = {
-        Pname:'',
+      user: {
+        username: "",
+        password: "",
+        email: "",
+      },
+      Pname:'',
       taskname: '',
       MName: '',
       Status: '',
-      items: []
+      items: null,
     }
     this.props = {
         Pname:'', item: []
     }
-    this.onSubmit = this.onSubmit.bind(this);
+this.onSubmit = this.onSubmit.bind(this);
+}
+async componentWillMount() {
+  // POST request using fetch with async/await
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'React POST Request Example' })
+  };
+  const response = await fetch('https://testapi.io/api/vamshi399/task', requestOptions);
+  const data = await response.json();
+  this.setState({ items: data });
 }
 
 
@@ -81,10 +97,19 @@ onSubmit = (e) => {
 
  
   render() {
+    var isFetching;
+    if(this.state.items==null){
+      isFetching = true;
+    }
+    else{
+      isFetching = false;
+    }
+    // const { isFetching } = this.state;
     return (
       <div className="App1">
-       
-          
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (          
         <div className="Project">
         <form><b>Add New Project:</b><br/>
           <button className='button'  onClick={this.onSubmit}> <FaPlusCircle size="2em" color="black" /></button>
@@ -112,7 +137,7 @@ onSubmit = (e) => {
            />
           </Modal>
          </div>
-        </div>
+        </div>)}
       </div>
     );
   }

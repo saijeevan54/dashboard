@@ -1,6 +1,9 @@
 import React from 'react';
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const items = this.props.items;
 
@@ -17,10 +20,10 @@ class Table extends React.Component {
             {items.map(item => {
               return (
                 <tr>
-                  <td>{item.Pname}</td>
-                  <td>{item.taskname}</td>
-                  <td>{item.MName}</td>
-                  <td>{item.Status}</td>
+                  <td>{item.project}</td>
+                  <td>{item.text}</td>
+                  <td>{item.assignee}</td>
+                  <td>{item.complete?'Completed':'Pending'}</td>
                 </tr>
               );
             })}
