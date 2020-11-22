@@ -24,9 +24,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: {
+        username: "",
+        password: "",
+        email: "",
+      },
+      roles: "manager",
       isUserActive: false
-    };
+    }
   }
+
+  
 
   // componentDidMount() {
   //   //Add .right by default
